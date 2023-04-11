@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Component, OnInit , OnDestroy } from '@angular/core';
 import { NavbarserviceService } from 'src/app/navbarservice.service';
 
 @Component({
@@ -10,16 +9,20 @@ import { NavbarserviceService } from 'src/app/navbarservice.service';
 export class SpinnerComponent implements OnInit {
 
   showSpinner:boolean = false;
+  sub: any;
 
   constructor(
     private navbarservice: NavbarserviceService
   ) { }
 
   ngOnInit(): void {
-    this.navbarservice.getSpinnerValue().subscribe((data:any)=>{
-      console.log(data)
+    this.sub = this.navbarservice.getSpinnerValue().subscribe((data:any)=>{
       this.showSpinner = data;
     });
+  }
+
+  ngOnDestroy():void {
+    this.sub.unsubscribe();
   }
 
 }

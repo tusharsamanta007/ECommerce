@@ -17,26 +17,32 @@ export class NavbarComponent implements OnInit {
     private router: Router
   ) { }
 
-  showNavbar:boolean = false;
-  username:string = '';
-  adminAccess:string = '';
+  showNavbar: boolean = false;
+  username: string = '';
+  adminAccess: string = '';
 
   ngOnInit(): void {
-    this.showNavbar = this.authorisationService.isLoggedIn();
-    this.navbarService.getShowNav().subscribe((res)=>{
-      this.showNavbar = res;
-    });
     let token = localStorage.getItem('appbearer');
-    if(token){
+    if (token) {
       const jwtHelper = new JwtHelperService();
       const decodedToken = jwtHelper.decodeToken(token);
       this.username = decodedToken.name;
       this.adminAccess = decodedToken.access;
     }
-    
+    this.showNavbar = this.authorisationService.isLoggedIn();
+    this.navbarService.getShowNav().subscribe((res) => {
+      this.showNavbar = res;
+      let token = localStorage.getItem('appbearer');
+      if (token) {
+        const jwtHelper = new JwtHelperService();
+        const decodedToken = jwtHelper.decodeToken(token);
+        this.username = decodedToken.name;
+        this.adminAccess = decodedToken.access;
+      }
+    });
   }
 
-  SignOut(){
+  SignOut() {
     localStorage.removeItem('appbearer');
     this.navbarService.sendShowNav(false);
     this.router.navigate(['/login']);

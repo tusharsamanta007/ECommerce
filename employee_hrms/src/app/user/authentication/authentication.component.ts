@@ -44,6 +44,7 @@ export class AuthenticationComponent implements OnInit {
           this.navbarservice.sendShowNav(true);
           this.router.navigate(['']);
         } else{
+          this.navbarservice.sendSpinnerValue(false);
           console.log(response.message);
         }
       });
