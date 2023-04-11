@@ -7,6 +7,8 @@ import { Observable, Subject } from 'rxjs';
 export class NavbarserviceService {
 
   private showNavBar = new Subject();
+  private showSpinner = new Subject();
+  
   constructor() { }
 
   sendShowNav(value:boolean){
@@ -17,4 +19,11 @@ export class NavbarserviceService {
     return this.showNavBar.asObservable();
   }
 
+  sendSpinnerValue(value:boolean){
+    this.showSpinner.next(value);
+  }
+
+  getSpinnerValue():Observable<any>{
+    return this.showSpinner.asObservable();
+  }
 }

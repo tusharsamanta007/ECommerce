@@ -37,9 +37,10 @@ export class AuthenticationComponent implements OnInit {
   signin(){
     this.submitted = true;
     if(this.loginForm.valid){
+      this.navbarservice.sendSpinnerValue(true);
       this.authorisation.signin(this.loginForm.value).subscribe((response)=>{
-        console.log(response);
         if(response.status == '1'){
+          this.navbarservice.sendSpinnerValue(false);
           this.navbarservice.sendShowNav(true);
           this.router.navigate(['']);
         } else{
@@ -52,10 +53,16 @@ export class AuthenticationComponent implements OnInit {
   }
 
   signUp(){
+    // console.log(this.signupForm.valid)
     if(this.signupForm.valid){
+      this.navbarservice.sendSpinnerValue(true);
       if(this.signupForm.value.password == this.signupForm.value.reEnterPassword){
         this.authorisation.signup(this.signupForm.value).subscribe((response:any)=>{
-          console.log(response);
+          console.log(response)
+          if(response.status == 1){
+            this.navbarservice.sendSpinnerValue(false);
+            this.router.navigate(['/login']);
+          }
         });
       } else{
         console.log("password Doesn't matched");
@@ -63,6 +70,7 @@ export class AuthenticationComponent implements OnInit {
     } else{
       console.log("Form is not valid")
     }
+    // this.navbarservice.sendSpinnerValue(false);
   }
 
   toggleSignIn(){

@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
 
   showNavbar:boolean = false;
   username:string = '';
+  adminAccess:string = '';
 
   ngOnInit(): void {
     this.showNavbar = this.authorisationService.isLoggedIn();
@@ -27,10 +28,10 @@ export class NavbarComponent implements OnInit {
     });
     let token = localStorage.getItem('appbearer');
     if(token){
-      console.log(token)
       const jwtHelper = new JwtHelperService();
       const decodedToken = jwtHelper.decodeToken(token);
-      console.log(decodedToken);
+      this.username = decodedToken.name;
+      this.adminAccess = decodedToken.access;
     }
     
   }

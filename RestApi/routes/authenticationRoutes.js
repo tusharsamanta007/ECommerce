@@ -10,7 +10,7 @@ router.post('/authentication', async (req,res)=>{
         if(allUsers.length != 0){
             const comparePassword = await bcrypt.compare(req.body.password,allUsers[0].password);
             if(comparePassword){
-                const user = {name:req.body.username};
+                const user = {name:req.body.username,access:allUsers[0]['priviledge']};
                 const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET);
                 res.json({"status":"1","message" : "You are successfully loggedin","appbearer" : accessToken});    
             }else{
@@ -20,7 +20,6 @@ router.post('/authentication', async (req,res)=>{
             res.json({"status":"0","message" : "User not found"});
         }
     }catch(err){
-        // hello
         res.json({"status":"0","message" : err.message});
     }
     
