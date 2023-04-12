@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardService } from './dashboard.service';
+import { DashboardService } from '../../shared/services/dashboard.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({

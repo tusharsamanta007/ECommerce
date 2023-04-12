@@ -1,0 +1,38 @@
+<div class="form-design">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <input type="hidden" pInputText>
+        <div class="mb-3">
+            <label for="name" class="form-label">Product Name</label><br>
+            <input type="text" formControlName="name" pInputText>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Price</label><br>
+            <input type="number" formControlName="price" pInputText>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Stock</label><br>
+            <input type="number" formControlName="quantity" pInputText>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Discount</label><br>
+            <input type="number" formControlName="discount" pInputText>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Category</label><br>
+            <p-dropdown [options]="categoryDropDown" formControlName="category" placeholder="Select a category" [group]="true" [filter]="true" [showClear]="true" filterBy="name">
+                <ng-template let-group pTemplate="group">
+                    <div class="flex align-items-center">
+                        <span>{{ group.name }}</span>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Choose Image For Product</label><br>
+            <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]"
+                url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*"
+                (onUpload)="onUpload($event)"></p-fileUpload>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

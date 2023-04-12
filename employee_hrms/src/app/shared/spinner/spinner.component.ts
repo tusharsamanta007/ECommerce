@@ -1,5 +1,5 @@
 import { Component, OnInit , OnDestroy } from '@angular/core';
-import { NavbarserviceService } from 'src/app/navbarservice.service';
+import { NavbarserviceService } from 'src/app/shared/services/navbarservice.service';
 
 @Component({
   selector: 'app-spinner',

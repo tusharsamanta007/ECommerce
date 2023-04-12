@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthguardGuard } from './CommonTools/authguard.guard';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthenticationComponent } from './user/authentication/authentication.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { AuthenticationComponent } from './views/user/authentication/authentication.component';
+import { CreateProductComponent } from './views/create-product/create-product.component';
 
 const routes: Routes = [
   {
@@ -10,8 +11,13 @@ const routes: Routes = [
     component: AuthenticationComponent
   },
   {
-    path: '',
+    path: 'dashboard',
     component: DashboardComponent,
+    canActivate:[AuthguardGuard]
+  },
+  {
+    path: 'create',
+    component: CreateProductComponent,
     canActivate:[AuthguardGuard]
   }
 ];

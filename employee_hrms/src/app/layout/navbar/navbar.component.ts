@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavbarserviceService } from '../navbarservice.service';
-import { AuthorisationService } from '../user/authorisation.service';
+import { NavbarserviceService } from '../../shared/services/navbarservice.service';
+import { AuthorisationService } from '../../shared/services/authorisation.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
@@ -26,7 +26,9 @@ export class NavbarComponent implements OnInit {
     if (token) {
       const jwtHelper = new JwtHelperService();
       const decodedToken = jwtHelper.decodeToken(token);
-      this.username = decodedToken.name;
+      let name = decodedToken.name;
+      let usernameArray = name.split('@');
+      this.username = usernameArray[0].toUpperCase();
       this.adminAccess = decodedToken.access;
     }
     this.showNavbar = this.authorisationService.isLoggedIn();
@@ -36,7 +38,9 @@ export class NavbarComponent implements OnInit {
       if (token) {
         const jwtHelper = new JwtHelperService();
         const decodedToken = jwtHelper.decodeToken(token);
-        this.username = decodedToken.name;
+        let name = decodedToken.name;
+        let usernameArray = name.split('@');
+        this.username = usernameArray[0].toUpperCase();
         this.adminAccess = decodedToken.access;
       }
     });

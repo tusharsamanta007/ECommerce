@@ -16,10 +16,21 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTableModule} from '@angular/material/table';
+import { MessagesModule } from 'primeng/messages';
+import { ButtonModule } from 'primeng/button';
+import { ShowMessageComponent } from './show-message/show-message.component';
+import { PrimeNGConfig } from 'primeng/api';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    SpinnerComponent
+    SpinnerComponent,
+    ShowMessageComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +48,15 @@ import {MatTableModule} from '@angular/material/table';
     MatInputModule,
     MatProgressSpinnerModule,
     DialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MessagesModule,
+    ButtonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    DropdownModule,
+    FileUploadModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatChipsModule,
@@ -54,8 +73,16 @@ import {MatTableModule} from '@angular/material/table';
     MatInputModule,
     MatProgressSpinnerModule,
     SpinnerComponent,
+    ShowMessageComponent,
     DialogModule,
-    MatButtonModule
+    MatButtonModule,
+    ButtonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    DropdownModule,
+    FileUploadModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

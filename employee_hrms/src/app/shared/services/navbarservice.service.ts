@@ -8,6 +8,7 @@ export class NavbarserviceService {
 
   private showNavBar = new Subject();
   private showSpinner = new Subject();
+  private showMes = new Subject();
   
   constructor() { }
 
@@ -25,5 +26,18 @@ export class NavbarserviceService {
 
   getSpinnerValue():Observable<any>{
     return this.showSpinner.asObservable();
+  }
+
+  showMessage(severity:any , summary:any , detail:any){
+    let value = {
+      severity: severity,
+      summary: summary,
+      detail: detail
+    }
+    this.showMes.next(value);
+  }
+
+  getMessageValues():Observable<any>{
+    return this.showMes.asObservable();
   }
 }
