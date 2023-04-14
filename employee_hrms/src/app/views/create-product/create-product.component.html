@@ -4,23 +4,48 @@
         <div class="mb-3">
             <label for="name" class="form-label">Product Name</label><br>
             <input type="text" formControlName="name" pInputText>
+            <!-- Validation for Product Name -->
+            <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert-danger">
+                <div *ngIf="name?.errors?.['required']">
+                    Email is required.
+                </div>
+            </div>
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Price</label><br>
-            <input type="number" formControlName="price" pInputText>
+            <input type="text" formControlName="price" pInputText>
+            <!-- Validation for Product price -->
+            <div *ngIf="price?.invalid && (price?.dirty || price?.touched)" class="alert-danger">
+                <div *ngIf="price?.errors?.['required']">
+                    Price is required.
+                </div>
+            </div>
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Stock</label><br>
-            <input type="number" formControlName="quantity" pInputText>
+            <input type="text" formControlName="quantity" pInputText>
+            <!-- Validation for Product Stock -->
+            <div *ngIf="quantity?.invalid && (quantity?.dirty || quantity?.touched)" class="alert-danger">
+                <div *ngIf="quantity?.errors?.['required']">
+                    Stock is required.
+                </div>
+            </div>
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Discount</label><br>
-            <input type="number" formControlName="discount" pInputText>
+            <input type="text" formControlName="discount" pInputText>
+            <!-- Validation for Product Discount -->
+            <div *ngIf="discount?.invalid && (discount?.dirty || discount?.touched)" class="alert-danger">
+                <div *ngIf="discount?.errors?.['required']">
+                    Discount is required.
+                </div>
+            </div>
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Category</label><br>
-            <p-dropdown [options]="categoryDropDown" formControlName="category" placeholder="Select a category" [group]="true" [filter]="true" [showClear]="true" filterBy="name">
-                <ng-template let-group pTemplate="group">
+            <p-dropdown [options]="categoryDropDown" optionLabel="name" formControlName="category" placeholder="Select"
+                [showClear]="true" filterBy="name">
+                <ng-template let-group pTemplate="item">
                     <div class="flex align-items-center">
                         <span>{{ group.name }}</span>
                     </div>
@@ -29,9 +54,9 @@
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Choose Image For Product</label><br>
-            <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]"
-                url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*"
-                (onUpload)="onUpload($event)"></p-fileUpload>
+            <!-- <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" accept="*"
+                (change)="onUpload($event)"></p-fileUpload> -->
+            <input type="file" id="file_id" (change)="onUpload($event)" />
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

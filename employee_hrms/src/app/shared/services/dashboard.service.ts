@@ -13,4 +13,9 @@ export class DashboardService {
     const URL = 'http://localhost:3000/product/getAllProductDetail';
     return this.http.get(URL);
   }
+
+  createProduct(data:any){
+    const URL = 'http://localhost:3000/product/createProduct';
+    return this.http.post(URL,data);
+  }
 }

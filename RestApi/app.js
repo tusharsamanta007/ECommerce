@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authenticationRoutes.js');
 const productRoutes = require('./routes/productRoutes.js');
+const formidable = require('express-formidable');
 
 // Cors configuration
 var cors = require('cors');
@@ -13,6 +14,9 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(formidable());
+
 
 app.use('/auth',authRoutes);
 app.use('/product',productRoutes);
